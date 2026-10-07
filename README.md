@@ -79,8 +79,15 @@ stored total. Flip `PAY_PROVIDER` and the code path changes, nothing else.
 
 ## Honest deployment status
 
-Built and tested locally (13/13). **Not yet pushed, not yet deployed** — pending
-BOS approval + Vercel token. Seeded demo data: one concert, 78 seats
+Built and tested locally (13/13). Source on
+[`Novian001/kursi-konser`](https://github.com/Novian001/kursi-konser).
+**Frontend live:** https://kursi-konser-topaz.vercel.app (Vercel project root =
+`frontend/`, build config in `vercel.json`).
+Production is frontend-only by design: the backend (`node:sqlite`,
+single-writer, single process) stays GitHub-only per deployment policy and runs
+locally per the Run section — so `/api/*` answers 404 on Vercel and the app
+renders an error banner instead of a seat map.
+Seeded demo data: one concert, 78 seats
 (Festival 6×10, VIP 3×6), tiers early-bird/regular/VIP, promo `HEMAT20`
 (20%, cap 3). Box-office channel shares the same seat rows; the cashier flow is
 the same hold→checkout→pay path.
