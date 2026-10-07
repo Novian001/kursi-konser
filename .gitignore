@@ -1,0 +1,6 @@
+node_modules/
+dist/
+database/*.db
+database/*.db-wal
+database/*.db-shm
+.env
