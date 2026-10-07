@@ -1,4 +1,5 @@
-// thin API client — /api prefix injected by vite proxy in dev, vercel.json rewrite in prod
+// thin API client — /api prefix injected by vite proxy in dev; production is frontend-only
+// (backend runs locally, not deployed), so /api answers 404/502 there.
 const B = '/api';
 async function req(method, path, body) {
   const r = await fetch(B + path, {
@@ -7,7 +8,8 @@ async function req(method, path, body) {
     body: body ? JSON.stringify(body) : undefined,
   });
   const j = await r.json().catch(() => ({}));
-  if (!r.ok) throw Object.assign(new Error(j.error || r.statusText), { status: r.status });
+  // HTTP/2 has no statusText -> never fall back to '' (falsy err = infinite "Memuat event…")
+  if (!r.ok) throw Object.assign(new Error(j.error || r.statusText || `HTTP ${r.status}`), { status: r.status });
   return j;
 }
 export const api = {
