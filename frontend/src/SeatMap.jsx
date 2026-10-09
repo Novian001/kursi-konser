@@ -89,9 +89,9 @@ export default function SeatMap({ event, hold, onHold, onClear }) {
       </div>
 
       <div className="action-bar">
-        <span>{picked.length ? `${picked.length} kursi dipilih` : 'Pilih kursi untuk lanjut'}</span>
+        <span>{hold ? 'Hold aktif. Lanjut ke Checkout.' : (picked.length ? `${picked.length} kursi dipilih` : 'Pilih kursi untuk lanjut')}</span>
         <button className="primary" disabled={!picked.length || busy || !!hold} onClick={confirmHold}>
-          {busy ? 'Memproses…' : 'Tahan 10 menit'}
+          {busy ? 'Memproses…' : 'Tahan 10 menit & lanjut'}
         </button>
       </div>
     </section>

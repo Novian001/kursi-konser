@@ -112,8 +112,8 @@ export default function Gate() {
       {result && (
         <div className={`verdict ${result.ok ? 'in' : 'rej'}`} role="status" aria-live="polite">
           {result.ok
-            ? <>✅ MASUK — Kursi <strong>{result.seat}</strong> ({result.section})</>
-            : <>❌ {result.error}</>}
+            ? <>MASUK — Kursi <strong>{result.seat}</strong> ({result.section})</>
+            : <>{result.error}</>}
         </div>
       )}
       <p className="muted">Scan ganda = hanya 1 diterima; scan kedua ditolak + tercatat di log.</p>

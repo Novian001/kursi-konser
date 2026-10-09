@@ -40,7 +40,7 @@ export default function Checkout({ hold, event, buyerKey, onPaid, onCancel }) {
           <label htmlFor="promo">Kode promo</label>
           <div className="row">
             <input id="promo" value={promo} onChange={(e) => setPromo(e.target.value.toUpperCase())}
-                   placeholder="HEMAT20" autoComplete="off" />
+                   placeholder="HEMAT20" autoComplete="off" aria-label="Kode promo" />
             <button onClick={() => doCheckout(promo)} disabled={busy || !promo}>Terapkan</button>
             <button className="ghost" onClick={() => doCheckout('')} disabled={busy}>Tanpa promo</button>
           </div>
@@ -58,6 +58,9 @@ export default function Checkout({ hold, event, buyerKey, onPaid, onCancel }) {
             <div className="line discount"><span>Diskon {preview.promo_code}</span><span>−{rupiah(preview.discount_cents)}</span></div>
           )}
           <div className="line total"><span>Total</span><span>{rupiah(preview.total_cents)}</span></div>
+          <div className="row">
+            <button className="ghost" onClick={() => { setPreview(null); setErr(null); }} disabled={busy}>Ubah promo</button>
+          </div>
           <p className="muted">Kursi ditahan sampai pembayaran selesai.</p>
         </div>
       )}

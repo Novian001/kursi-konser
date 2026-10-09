@@ -21,7 +21,7 @@ export default function Tickets({ order, onBack }) {
         {(list || []).map((t) => <Ticket key={t.id} t={t} />)}
       </div>
       <div className="action-bar">
-        <span className="muted">{list?.length ? rupiah(list[0].total_cents) : ''}</span>
+        {list?.length > 0 && <span className="muted">Total: {rupiah(list[0].total_cents)}</span>}
         <button className="primary" onClick={onBack}>Selesai</button>
       </div>
     </section>
